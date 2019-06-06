@@ -1,0 +1,22 @@
+#!/bin/sh
+# nohup /bin/bash /mnt/command/restartunity &
+# pkill -9 unity-setitings
+while true;
+
+do
+echo "Restartunity running $(date)" >> /home/ubuntu/nohup.out
+
+echo "RESTART COMPIZ $(date)" >> /home/ubuntu/nohup.out
+# pkill -1 compiz
+pkill compiz
+sleep 3
+nohup compiz &
+# pkill -1 unity-settings
+sleep 60
+pkill nautilus
+sleep 60
+pkill -9 unity-settings
+echo "KILL unity-setitings $(date)" >> /home/ubuntu/nohup.out
+sleep 86400
+sleep 60
+done

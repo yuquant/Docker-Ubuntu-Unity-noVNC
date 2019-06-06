@@ -55,8 +55,11 @@ COPY supervisor.conf /etc/supervisor/conf.d/
 # Set xsession of Unity
 COPY xsession $HOME/.xsession
 
-# Copy startup script
+# Copy startup script,修复了无法修改密码的问题
 COPY startup.sh $HOME
+
+# 定期重启unity以防gpu占用过高
+COPY restartunity /home/ubuntu/restartunity
 
 # 安装搜狗输入法
 COPY sogoupinyin_2.2.0.0108_amd64.deb $HOME/Downloads/sogoupinyin_2.2.0.0108_amd64.deb

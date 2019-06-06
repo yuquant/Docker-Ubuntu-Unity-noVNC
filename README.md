@@ -1,10 +1,11 @@
 # Docker-Ubuntu-Unity-noVNC中文桌面版
 
 ## 更新特色:
+- 解决了compiz unity-setting 等cpu持续增长问题 
 - 直接通过ip登陆
 - 移动端及PC端打开后屏幕分辨率自适应调整
 - 增加中文显示支持,添加了搜狗输入法,通过Ctrl+Space切换
-- 修复了vnc密码无法继续修改的bug
+- 修复了vnc密码无法继续修改的bug  
 Dockfile for Ubuntu with Unity desktop environment and noVNC. 
 
 This **Image/Dockerfile** aims to create a container for **Ubuntu 16.04** with **Unity Desktop** and using **TightVNCServer**, **noVNC** which allow user use browser to log in into this container.
@@ -85,7 +86,7 @@ This image contains 3 input argument:
    ```
 
 ## Issues
-TODO:部分docker cpu占用缓慢增长的情况.    
+部分docker cpu占用缓慢增长的情况,通过restartunity定期重启桌面解决    
 Can't work properly with gnome-terminal, use XTerm to place it.
 
 Some components of Unity may not work properly with vncserver.
