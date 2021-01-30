@@ -1,6 +1,7 @@
 # Docker-Ubuntu-Unity-noVNC中文桌面版
 
 ## 更新特色:
+- 可以自由选择cuda版本做深度学习
 - 解决了compiz unity-setting 等cpu持续增长问题 
 - 直接通过ip登陆
 - 移动端及PC端打开后屏幕分辨率自适应调整

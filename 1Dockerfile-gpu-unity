@@ -1,11 +1,11 @@
-FROM liuweipeng/deepo:latest
+FROM liuweipeng/deepo:cuda11
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV USER ubuntu
-ENV HOME /home/$USER
+# ENV DEBIAN_FRONTEND noninteractive
+# ENV USER ubuntu
+# ENV HOME /home/$USER
 
 # Create new user for vnc login.
-RUN adduser $USER --disabled-password
+# RUN adduser $USER --disabled-password
 
 # Install Ubuntu Unity.
 RUN apt-get update \
