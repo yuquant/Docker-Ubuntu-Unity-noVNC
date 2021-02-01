@@ -68,7 +68,7 @@ This image contains 3 input argument:
 
    In default, the user **ubuntu** will not be the sudoer, but if you need, you can use this command:
    ```
-   sudo docker run -itd -p 80:6080 -e SUDO=yes yuquant/ubuntu-unity-novnc
+   sudo docker run -d -p 80:6080 -e SUDO=yes yuquant/ubuntu-unity-novnc
    ```
 
    This command will grant the **sudo** to user **ubuntu**.
@@ -83,7 +83,7 @@ This image contains 3 input argument:
    **Caution!!** allow your user as sudoer may cause security issues, use it carefully.
    如果想禁止使用su用户,可执行以下命令
    ```
-   sudo docker run -itd -p 80:6080 -e SUDO=no yuquant/ubuntu-unity-novnc
+   sudo docker run -d -p 80:6080 -e SUDO=no yuquant/ubuntu-unity-novnc
    ```
 
 ## Issues

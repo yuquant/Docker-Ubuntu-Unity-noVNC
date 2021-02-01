@@ -1,7 +1,7 @@
 # 临时添加功能用
-FROM liuweipeng/gpu-unity-zh:link
-COPY startup.sh /home/ubuntu/startup.sh
-COPY restartunity /home/ubuntu/restartunity
-COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf 
-EXPOSE 6080 5901 4040
+FROM liuweipeng/dl:cuda11-novnc
+COPY tigervnc.tar.gz /tmp/tigervnc.tar.gz
+COPY noVNC.tar.gz /tmp/noVNC.tar.gz
+RUN tar -xf /tmp/tigervnc.tar.gz -C /  && tar -xf /tmp/noVNC.tar.gz -C $HOME/
+EXPOSE 6080
 CMD ["/bin/bash", "/home/ubuntu/startup.sh"]

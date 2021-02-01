@@ -34,14 +34,14 @@ RUN apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy tigerVNC binaries
-ADD tigervnc-1.8.0.x86_64 /
-RUN chmod a+x /usr/bin/vnc*
-RUN chmod a+x /usr/bin/Xvnc /usr/bin/x0vncserver
+# copy vnc
+COPY tigervnc.tar.gz /tmp/tigervnc.tar.gz
+COPY noVNC.tar.gz /tmp/noVNC.tar.gz
+RUN tar -xf /tmp/tigervnc.tar.gz -C /  && tar -xf /tmp/noVNC.tar.gz -C $HOME/
 
 # Clone noVNC.
 # RUN git clone https://github.com/novnc/noVNC.git $HOME/noVNC
-COPY noVNC $HOME/noVNC
+# COPY noVNC $HOME/noVNC
 
 # Clone websockify for noVNC
 # Run git clone https://github.com/kanaka/websockify $HOME/noVNC/utils/websockify
@@ -58,10 +58,6 @@ COPY xsession $HOME/.xsession
 
 # Copy startup script,修复了无法修改密码的问题
 COPY startup.sh $HOME
-# windows git下的文件权限丢失,如果是从windows上传的文件,需要增加权限
-RUN chmod a+x /usr/bin/vnc*
-RUN chmod a+x /usr/bin/Xvnc /usr/bin/x0vncserver
-RUN chmod a+x /home/ubuntu/noVNC/utils/websockify/run
 
 # 定期重启unity以防gpu占用过高
 COPY restartunity $HOME/restartunity
