@@ -1,6 +1,6 @@
 # ==================================================================
-# NAME liuweipeng/deepo:cuda11
-# sudo docker build -t liuweipeng/deepo:cuda11 .
+# NAME liuweipeng/dl:cuda11.1
+# sudo docker build -t liuweipeng/dl:cuda11 .
 # ------------------------------------------------------------------
 # python        3.6    (apt)
 # ==================================================================

@@ -1,4 +1,4 @@
-FROM liuweipeng/deepo:cuda11
+FROM liuweipeng/dl:cuda11.1
 
 # ENV DEBIAN_FRONTEND noninteractive
 # ENV USER ubuntu
@@ -23,27 +23,25 @@ RUN apt-get update \
 RUN apt-get install -y \
         supervisor \
         net-tools \
-        curl \
-#        git \
 #        python3-tk \
         python3.6-tk \
         pwgen \
         libtasn1-3-bin \
         libglu1-mesa \
-        eog \ # 看图软件
-    && apt-get autoclean \
+        eog  # 看图软件
+RUN apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy tigerVNC binaries
-ADD tigervnc-1.8.0.x86_64 /
+# ADD tigervnc-1.8.0.x86_64 /
 
 # Clone noVNC.
 # RUN git clone https://github.com/novnc/noVNC.git $HOME/noVNC
-COPY noVNC /home/ubuntu/noVNC
+COPY noVNC $HOME/noVNC
 
 # Clone websockify for noVNC
-Run git clone https://github.com/kanaka/websockify $HOME/noVNC/utils/websockify
+# Run git clone https://github.com/kanaka/websockify $HOME/noVNC/utils/websockify
 
 # Download ngrok.
 # ADD https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip $HOME/ngrok/ngrok.zip
@@ -59,12 +57,12 @@ COPY xsession $HOME/.xsession
 COPY startup.sh $HOME
 
 # 定期重启unity以防gpu占用过高
-COPY restartunity /home/ubuntu/restartunity
+COPY restartunity $HOME/restartunity
 
 # 安装搜狗输入法
 COPY sogoupinyin_2.2.0.0108_amd64.deb $HOME/Downloads/sogoupinyin_2.2.0.0108_amd64.deb
 RUN apt remove fcitx* && sudo apt autoremove
-RUN dpkg -i ~/Downloads/sogoupinyin*.deb; apt -yf install
+RUN dpkg -i $HOME/Downloads/sogoupinyin*.deb; apt -yf install
 
 EXPOSE 6080 5901 4040
 CMD ["/bin/bash", "/home/ubuntu/startup.sh"]
