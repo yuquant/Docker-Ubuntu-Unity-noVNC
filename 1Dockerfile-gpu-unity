@@ -1,3 +1,4 @@
+# liuweipeng/dl:cuda11.1-novnc
 FROM liuweipeng/dl:cuda11.1
 
 # ENV DEBIAN_FRONTEND noninteractive
@@ -34,7 +35,9 @@ RUN apt-get autoclean \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy tigerVNC binaries
-# ADD tigervnc-1.8.0.x86_64 /
+ADD tigervnc-1.8.0.x86_64 /
+RUN chmod a+x /usr/bin/vnc*
+RUN chmod a+x /usr/bin/Xvnc /usr/bin/x0vncserver
 
 # Clone noVNC.
 # RUN git clone https://github.com/novnc/noVNC.git $HOME/noVNC
@@ -55,6 +58,10 @@ COPY xsession $HOME/.xsession
 
 # Copy startup script,修复了无法修改密码的问题
 COPY startup.sh $HOME
+# windows git下的文件权限丢失,如果是从windows上传的文件,需要增加权限
+RUN chmod a+x /usr/bin/vnc*
+RUN chmod a+x /usr/bin/Xvnc /usr/bin/x0vncserver
+RUN chmod a+x /home/ubuntu/noVNC/utils/websockify/run
 
 # 定期重启unity以防gpu占用过高
 COPY restartunity $HOME/restartunity
