@@ -7,7 +7,6 @@ FROM liuweipeng/dl:cuda11.1
 
 # Create new user for vnc login.
 # RUN adduser $USER --disabled-password
-
 # Install Ubuntu Unity.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -62,10 +61,6 @@ COPY startup.sh $HOME
 # 定期重启unity以防gpu占用过高
 COPY restartunity $HOME/restartunity
 
-# 安装搜狗输入法
-COPY sogoupinyin_2.2.0.0108_amd64.deb $HOME/Downloads/sogoupinyin_2.2.0.0108_amd64.deb
-RUN apt remove fcitx* && sudo apt autoremove
-RUN dpkg -i $HOME/Downloads/sogoupinyin*.deb; apt -yf install
 
 EXPOSE 6080 5901 4040
 CMD ["/bin/bash", "/home/ubuntu/startup.sh"]

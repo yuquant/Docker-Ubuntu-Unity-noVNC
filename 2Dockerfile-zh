@@ -1,0 +1,14 @@
+# 添加中文支持
+# docker build -t liuweipeng/cuda11.1-novnc:1.0.1 .
+FROM liuweipeng/cuda11.1-novnc:1.0.0
+ENV LANG C.UTF-8
+ENV LANGUAGE zh_CN:zh:en_US:en
+RUN apt-get update && apt-get install -y --no-install-recommends language-pack-zh-han*  fonts-droid-fallback ttf-wqy-zenhei ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming
+# 安装搜狗输入法，完成后还需要设定，不过似乎会报错
+# RUN add-apt-repository ppa:fcitx-team/nightly
+# RUN apt-get update
+# COPY sogoupinyin_2.2.0.0108_amd64.deb $HOME/Downloads/sogoupinyin_2.2.0.0108_amd64.deb
+# RUN apt remove fcitx* && sudo apt autoremove && apt-get install -y --no-install-recommends fcitx fcitx-table-all
+# RUN dpkg -i $HOME/Downloads/sogoupinyin*.deb; apt -yf install
+EXPOSE 6080
+CMD ["/bin/bash", "/home/ubuntu/startup.sh"]
