@@ -85,6 +85,10 @@ This image contains 3 input argument:
    ```
    sudo docker run -d -p 80:6080 -e SUDO=no yuquant/ubuntu-unity-novnc
    ```
+   
+## 添加环境变量,在 /etc/bash.bashrc后添加即可
+export PATH=/mnt/command:$PATH
+export PATH=/mnt/venv/bin:$PATH
 
 ## Issues
 部分docker cpu占用缓慢增长的情况,通过restartunity定期重启桌面解决    
