@@ -54,7 +54,7 @@ RUN apt-get install -y --no-install-recommends \
 RUN apt-get install -y --no-install-recommends \
         python3.9 \
         python3.9-dev \
-        python3.9-distutils
+        python3.9-distutils python3.9-tk
 
 RUN wget -O ~/get-pip.py \
         https://bootstrap.pypa.io/get-pip.py && \
