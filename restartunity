@@ -8,9 +8,9 @@ echo "Restartunity running $(date)" >> /home/ubuntu/nohup.out
 
 echo "RESTART COMPIZ $(date)" >> /home/ubuntu/nohup.out
 # pkill -1 compiz
-pkill compiz
-sleep 3
-nohup compiz &
+# pkill compiz
+# sleep 3
+# nohup compiz &
 # pkill -1 unity-settings
 sleep 60
 pkill nautilus
